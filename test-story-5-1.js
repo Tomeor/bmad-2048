@@ -33,9 +33,8 @@ const jsContent   = fs.readFileSync(path.join(__dirname, 'frontend/app.js'), 'ut
 console.log('\n--- Suite 1 : HTML — tabindex="-1" sur #game-grid ---');
 
 assert(
-  /id="game-grid"[^>]*tabindex="-1"/.test(htmlContent) ||
-  /tabindex="-1"[^>]*id="game-grid"/.test(htmlContent),
-  '#game-grid possède tabindex="-1"'
+  !/id="game-grid"[^>]*tabindex/.test(htmlContent),
+  '#game-grid ne possède pas de tabindex (focus sur document.body à la place)'
 );
 
 assert(
@@ -54,20 +53,14 @@ assert(
 // SUITE 2 — style.css : règle focus programmatique masquée
 // ============================================================
 
-console.log('\n--- Suite 2 : CSS — outline masqué sur focus programmatique ---');
+console.log('\n--- Suite 2 : CSS — pas de règle outline spécifique #game-grid ---');
 
 assert(
-  cssContent.includes('#game-grid:focus:not(:focus-visible)'),
-  'Règle #game-grid:focus:not(:focus-visible) présente'
+  !cssContent.includes('#game-grid:focus:not(:focus-visible)'),
+  'Pas de règle outline spécifique #game-grid (focus sur body, non nécessaire)'
 );
 
 assert(
-  /#game-grid:focus:not\(:focus-visible\)\s*\{[^}]*outline:\s*none/.test(cssContent),
-  'Règle contient outline: none'
-);
-
-assert(
-  // La règle focus-visible universelle est toujours présente
   cssContent.includes('*:focus-visible'),
   'Règle *:focus-visible universelle préservée (pas de régression)'
 );
@@ -85,12 +78,8 @@ assert(initMatch !== null, 'Section // === INIT === trouvée dans app.js');
 if (initMatch) {
   const initSection = initMatch[1];
   assert(
-    initSection.includes("document.getElementById('game-grid').focus"),
-    'Appel .focus() sur #game-grid présent dans INIT'
-  );
-  assert(
-    initSection.includes('preventScroll: true'),
-    'Option preventScroll: true utilisée dans INIT'
+    initSection.includes('document.body.focus'),
+    'Appel document.body.focus() présent dans INIT (pas de bip ARIA)'
   );
   assert(
     initSection.includes('initGame()'),
@@ -115,12 +104,8 @@ assert(resetModalMatch !== null, 'Fonction resetModal() trouvée dans app.js');
 if (resetModalMatch) {
   const resetModalBody = resetModalMatch[1];
   assert(
-    resetModalBody.includes("document.getElementById('game-grid').focus"),
-    'Appel .focus() sur #game-grid présent dans resetModal()'
-  );
-  assert(
-    resetModalBody.includes('preventScroll: true'),
-    'Option preventScroll: true utilisée dans resetModal()'
+    resetModalBody.includes('document.body.focus'),
+    'Appel document.body.focus() présent dans resetModal()'
   );
   // Vérifier que les lignes existantes sont préservées
   assert(

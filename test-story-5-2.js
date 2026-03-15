@@ -134,7 +134,7 @@ console.log('\n--- Suite 6 : Intégrité du reste du CSS ---');
 assert(cssContent.includes('*:focus-visible {'), 'Règle focus-visible universelle préservée');
 assert(cssContent.includes('.layout {'), 'Classe .layout préservée');
 assert(cssContent.includes('.game-section'), '.game-section préservée');
-assert(cssContent.includes('#game-grid:focus:not(:focus-visible)'), 'Règle focus #game-grid de Story 5.1 préservée');
+assert(!cssContent.includes('#game-grid:focus:not(:focus-visible)'), 'Règle outline #game-grid supprimée (focus sur body désormais)');
 assert(cssContent.includes('.modal-overlay'), 'Styles modale préservés');
 assert(cssContent.includes('.ai-badge {'), 'Badge AI préservé');
 

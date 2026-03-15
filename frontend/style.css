@@ -68,10 +68,6 @@ body {
   outline-offset: 2px;
 }
 
-/* Focus programmatique sur #game-grid — outline masqué (non interactif par Tab) */
-#game-grid:focus:not(:focus-visible) {
-  outline: none;
-}
 
 /* === LAYOUT === */
 /* Mobile-first : 1 colonne */
@@ -281,6 +277,7 @@ h1 {
   padding: var(--gap);
   width: min(80vw, 400px);
   aspect-ratio: 1 / 1;
+  touch-action: none; /* empêche le scroll natif pendant les swipes */
 }
 
 .cell {
