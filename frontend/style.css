@@ -60,6 +60,7 @@ body {
   background-size: 32px 32px;
   color: var(--color-text);
   min-height: 100vh;
+  touch-action: none; /* bloque tout scroll natif sur la page entière (jeu mobile) */
 }
 
 /* Focus universel WCAG AA (UX-DR15) */
