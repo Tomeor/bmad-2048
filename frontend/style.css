@@ -192,13 +192,19 @@ body {
 @media (min-width: 768px) {
   .layout {
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     padding: 32px;
     gap: 32px;
   }
 
   .game-section        { flex: 6; }
-  .leaderboard-section { flex: 4; display: block; }
+  .leaderboard-section {
+    flex: 4;
+    display: block;
+    align-self: stretch;
+    margin-top: 82px; /* h1 height (66px) + game-section gap (16px) */
+    box-sizing: border-box;
+  }
 }
 
 /* === GAME SECTION === */
