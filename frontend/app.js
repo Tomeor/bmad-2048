@@ -416,8 +416,7 @@ document.getElementById('restart-btn').addEventListener('click', initGame);
 document.getElementById('modal-restart-btn').addEventListener('click', initGame);
 
 // === INIT ===
-document.addEventListener('DOMContentLoaded', () => {
-  initGame();
-  loadLeaderboard();
-  document.body.focus(); // focus page — clavier immédiat sans clic, sans bip ARIA
-});
+// defer garantit que le DOM est prêt — pas besoin de DOMContentLoaded
+initGame();
+loadLeaderboard();
+document.body.focus(); // focus page — clavier immédiat sans clic
