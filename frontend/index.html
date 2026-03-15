@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2048 — test-bmad</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Badge décoratif — aria-hidden car purement visuel (UX-DR8) -->
+  <div class="ai-badge" aria-hidden="true">Made with AI ✨</div>
+
+  <div class="layout">
+
+    <!-- Section jeu principale -->
+    <main class="game-section">
+      <h1>2048</h1>
+
+      <!-- Zone scores -->
+      <div class="score-area">
+        <div class="score-box" id="score-box">
+          <span class="score-label">SCORE</span>
+          <span class="score-value" id="score-display" aria-live="polite">0</span>
+        </div>
+        <div class="score-box" id="best-score-box">
+          <span class="score-label">MEILLEUR</span>
+          <span class="score-value" id="best-score-display">0</span>
+        </div>
+      </div>
+
+      <!-- Bouton rejouer (toujours visible) -->
+      <button class="btn btn-secondary" id="restart-btn">Rejouer</button>
+
+      <!-- Grille de jeu 4×4 (UX-DR2) -->
+      <div id="game-grid" role="grid" aria-label="Grille de jeu 2048">
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+      </div>
+    </main>
+
+    <!-- Modale fin de partie (UX-DR5, UX-DR11) -->
+    <div id="game-over-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+      <div class="modal-card">
+        <h2 id="modal-title">Partie terminée !</h2>
+        <p class="modal-score">Score : <strong id="modal-score-display">0</strong></p>
+        <p id="modal-rank-display" class="modal-rank" hidden></p>
+
+        <!-- Message d'erreur inline (UX-DR7) -->
+        <div id="modal-error" class="error-message" hidden>
+          <span aria-hidden="true">⚠️</span>
+          <span id="modal-error-text">Oups, impossible d'enregistrer ton score.</span>
+        </div>
+
+        <div class="modal-form">
+          <input
+            type="text"
+            id="pseudo-input"
+            maxlength="20"
+            placeholder="Ton pseudo (optionnel)"
+            autocomplete="off"
+          >
+          <button class="btn btn-primary" id="submit-score-btn">Enregistrer mon score</button>
+          <button class="btn btn-secondary" id="retry-btn" hidden>Réessayer</button>
+          <button class="btn btn-secondary" id="modal-restart-btn">Rejouer</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section leaderboard — sidebar desktop, post-partie mobile (UX-DR6) -->
+    <section class="leaderboard-section" aria-label="Classement Top 10">
+      <h2>Classement</h2>
+      <ol id="leaderboard-list" class="leaderboard-list">
+        <!-- Skeleton loader visible au chargement initial (UX-DR12) -->
+        <li class="skeleton-row"></li>
+        <li class="skeleton-row"></li>
+        <li class="skeleton-row"></li>
+      </ol>
+    </section>
+
+  </div><!-- /.layout -->
+
+  <script defer src="app.js"></script>
+</body>
+</html>
