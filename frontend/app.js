@@ -221,6 +221,8 @@ function updateScoreDisplay() {
 
 function showGameOver() {
   document.getElementById('modal-score-display').textContent = state.score;
+  document.getElementById('modal-error').setAttribute('hidden', '');
+  document.getElementById('retry-btn').setAttribute('hidden', '');
   document.getElementById('game-over-modal').removeAttribute('hidden');
 }
 
