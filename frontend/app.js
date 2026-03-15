@@ -332,6 +332,7 @@ function resetModal() {
   document.getElementById('modal-error').setAttribute('hidden', '');
   document.getElementById('retry-btn').setAttribute('hidden', '');
   document.querySelector('.leaderboard-section').classList.remove('visible');
+  document.getElementById('game-grid').focus({ preventScroll: true }); // retour focus jeu après fermeture modale
 }
 
 // Listeners soumission
@@ -418,4 +419,5 @@ document.getElementById('modal-restart-btn').addEventListener('click', initGame)
 document.addEventListener('DOMContentLoaded', () => {
   initGame();
   loadLeaderboard();
+  document.getElementById('game-grid').focus({ preventScroll: true }); // focus auto — clavier immédiat sans clic
 });

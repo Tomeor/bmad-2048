@@ -35,7 +35,7 @@
 # - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
 
 generated: 2026-03-15
-last_updated: 2026-03-15
+last_updated: 2026-03-15 (Epic 5 ajouté)
 project: test-bmad
 project_key: NOKEY
 tracking_system: file-system
@@ -67,3 +67,8 @@ development_status:
   4-1-configuration-du-deploiement-render-com: done
   4-2-securite-production-cors-et-validation-end-to-end: done
   epic-4-retrospective: optional
+
+  # Epic 5 : Correctifs post-lancement
+  epic-5: in-progress
+  5-1-bug-focus-clavier-automatique: review
+  5-2-bug-leaderboard-section-desktop: review
