@@ -192,7 +192,7 @@ body {
 @media (min-width: 768px) {
   .layout {
     flex-direction: row;
-    align-items: flex-start;
+    align-items: center;
     padding: 32px;
     gap: 32px;
   }
